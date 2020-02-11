@@ -1,4 +1,5 @@
 
+<!-- // https://phppot.com/php/how-to-handle-csv-with-php-read-write-import-export-with-database/ -->
 <?php
 error_reporting(1);
 
@@ -36,7 +37,7 @@ if (isset($_POST['submit'])) {
 //                     $import = "INSERT INTO users_csv(name,dob,gender,mobileno,email,picture)
                     // VALUES('$data[0]','$data[1]','$data[2]','$data[3]','$data[4]','$data[5]')";
 
-                    echo $data[1];
+                    echo $data;
 
                     // mysql_query($import) or die(mysql_error());
 
