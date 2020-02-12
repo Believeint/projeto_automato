@@ -18,7 +18,7 @@ CREATE TABLE `Transacao` (
 	`parcelas` INT(2) NOT NULL,
 	`codigo_usuario` VARCHAR(20) NOT NULL,
 	`codigo_venda` VARCHAR(20) NOT NULL,
-	`serial_leitor` VARCHAR(20) NOT NULL,
+	`serial_leitor` VARCHAR(20),
 	`recebimentos` INT(3) NOT NULL,
 	`recebidos` INT(3) NOT NULL,
 	`valor_recebido` DECIMAL NOT NULL,
@@ -31,19 +31,18 @@ CREATE TABLE `Transacao` (
 );
 
 CREATE TABLE `Cliente` (
-	`id` INT(10) NOT NULL AUTO_INCREMENT,
+	`id` VARCHAR(20) NOT NULL,
 	`nome` VARCHAR(60),
-	`serial_leitor` VARCHAR(20) NOT NULL,
 	`email` VARCHAR(36),
 	`contato` VARCHAR(36),
 	`id_taxa` INT(10) NOT NULL,
 	`id_iss` INT(10) NOT NULL,
+	`serial_leitor` VARCHAR(20) NOT NULL UNIQUE,
 	PRIMARY KEY (`id`)
 );
 
 CREATE TABLE `Arquivo` (
 	`id` INT(10) NOT NULL AUTO_INCREMENT,
-	`transacao_id` VARCHAR(36) NOT NULL,
 	`data_envio` DATETIME NOT NULL,
 	PRIMARY KEY (`id`)
 );
@@ -62,11 +61,16 @@ CREATE TABLE `ISS` (
 	PRIMARY KEY (`id`)
 );
 
-ALTER TABLE `Cliente` ADD CONSTRAINT `Cliente_fk0` FOREIGN KEY (`serial_leitor`) REFERENCES `Transacao`(`serial_leitor`);
+CREATE TABLE `arquivo_transacao` (
+	`arquivo_id` INT NOT NULL,
+	`transacao_id` varchar(36) NOT NULL,
+	PRIMARY KEY (`arquivo_id`,`transacao_id`)
+);
 
-ALTER TABLE `Cliente` ADD CONSTRAINT `Cliente_fk1` FOREIGN KEY (`id_taxa`) REFERENCES `Taxa`(`id`);
+ALTER TABLE `Cliente` ADD CONSTRAINT `Cliente_fk0` FOREIGN KEY (`id_taxa`) REFERENCES `Taxa`(`id`);
 
-ALTER TABLE `Cliente` ADD CONSTRAINT `Cliente_fk2` FOREIGN KEY (`id_iss`) REFERENCES `ISS`(`id`);
+ALTER TABLE `Cliente` ADD CONSTRAINT `Cliente_fk1` FOREIGN KEY (`id_iss`) REFERENCES `ISS`(`id`);
 
-ALTER TABLE `Arquivo` ADD CONSTRAINT `Arquivo_fk0` FOREIGN KEY (`transacao_id`) REFERENCES `Transacao`(`transacao_id`);
+ALTER TABLE `arquivo_transacao` ADD CONSTRAINT `arquivo_transacao_fk0` FOREIGN KEY (`arquivo_id`) REFERENCES `Arquivo`(`id`);
 
+ALTER TABLE `arquivo_transacao` ADD CONSTRAINT `arquivo_transacao_fk1` FOREIGN KEY (`transacao_id`) REFERENCES `Transacao`(`transacao_id`);
