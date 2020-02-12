@@ -33,7 +33,7 @@ CREATE TABLE `Transacao` (
 CREATE TABLE `Cliente` (
 	`id` INT(10) NOT NULL AUTO_INCREMENT,
 	`nome` VARCHAR(60),
-	`serial_leitor` VARCHAR(36) NOT NULL UNIQUE,
+	`serial_leitor` VARCHAR(20) NOT NULL,
 	`email` VARCHAR(36),
 	`contato` VARCHAR(36),
 	`id_taxa` INT(10) NOT NULL,

@@ -44,7 +44,8 @@ class Csv
             $handle = fopen($file, 'r');
             $rows = array();
             while (!feof($handle)) {
-                $row = fgetcsv($handle);
+                $row = fgetcsv($handle, 10000, ';');
+                $row = array_map("utf8_encode", $row);
                 if (count($row) > 1) {
                     $rows[] = $row;
                 }

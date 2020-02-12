@@ -37,7 +37,7 @@ if (isset($_POST['submit'])) {
 //                     $import = "INSERT INTO users_csv(name,dob,gender,mobileno,email,picture)
                     // VALUES('$data[0]','$data[1]','$data[2]','$data[3]','$data[4]','$data[5]')";
 
-                    echo $data;
+                    echo $data[1][1];
 
                     // mysql_query($import) or die(mysql_error());
 

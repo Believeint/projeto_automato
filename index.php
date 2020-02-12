@@ -2,8 +2,6 @@
 
 require_once "Core/init.php";
 
-$db = DB::getInstance();
-
 ?>
 
 <!DOCTYPE html>
