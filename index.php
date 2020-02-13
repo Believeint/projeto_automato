@@ -13,7 +13,10 @@ require_once "Core/init.php";
             <title>Sistema | Automato</title>
             <link rel="stylesheet" href="css/font-awesome.min.css">
             <link rel="stylesheet" href="css/bootstrap.min.css">
-            <link rel="stylesheet" href="js/bootstrap.min.js">
+            <script src="js/bootstrap.min.js"></script>
+            <script src="js/jquery3.4.min.js"></script>
+
+
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-light bg-light" style="margin-bottom:50px;">
@@ -27,7 +30,7 @@ require_once "Core/init.php";
                     <a class="nav-link" href="index.php?page=imp-arquivo"><i class="fa fa-download"></i>&nbsp;&nbsp;IMPORTAR NOVO CSV <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="index.php?page=cons-arquivo">CONSULTAR</a>
+                    <a class="nav-link" href="index.php?page=pes-arquivo">CONSULTAR</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Pricing</a>
@@ -43,8 +46,8 @@ require_once "Core/init.php";
 include 'config.php';
 ?>
 
-        <script src="js/jquery3.4.min.js">
-        <script src="js/popper116.min.js">
+            <script src="js/jquery3.4.min.js">
+            <script src="js/popper116.min.js">
     </body>
 
 </html>

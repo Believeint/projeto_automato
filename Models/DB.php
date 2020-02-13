@@ -96,6 +96,12 @@ class DB
 
     }
 
+    public function getDistinct($table, $field)
+    {
+        $sql = "SELECT DISTINCT {$field} FROM {$table}";
+        $this->query($sql);
+    }
+
     public function get($table, $where)
     {
         return $this->action('SELECT *', $table, $where);
@@ -124,6 +130,11 @@ class DB
     public function lastid()
     {
         return $this->_last_id;
+    }
+
+    public function pdo()
+    {
+        return $this->_pdo;
     }
 
 }
