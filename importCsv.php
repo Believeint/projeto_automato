@@ -1,3 +1,13 @@
+<script src="//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script>
+    function myFunction() {
+   $('#alerta').fadeIn(100);
+   setTimeout(function() {
+       $('#alerta').fadeOut(100);
+   }, 100);
+}
+</script>
 <?php
 
 include 'Models/Csv.php';
@@ -44,6 +54,9 @@ if (isset($_POST['Import'])) {
 
         // Armazena arquivo
         $db = DB::getInstance();
+        $dbh = $db->pdo();
+        $dbh->beginTransaction();
+
         $arquivo = array(
             "data_envio" => date('Y-m-d H:i:s'),
         );
@@ -94,28 +107,32 @@ if (isset($_POST['Import'])) {
 
         }
 
-        echo "Success!";
+        $dbh->commit();
+
+        echo "Arquivo importado com sucesso!";
 
     } catch (PDOException $e) {
-        echo 'Erro: ' . $e->getMessage();
+        echo "<div id='alerta' class='alert alert-danger text-center' role='alert'>Não foi possível importar: Transação_ID duplicado.</div>";
+        $dbh->rollBack();
     }
 
 }
 ?>
 
 <div class="container">
-            <div class="row">
-                <form class="form-horizontal" action="" method="post" name="upload_excel" enctype="multipart/form-data" style="margin:auto;">
-                        <div class="form-group">
-                            <div>
-                                <input type="file" name="arq_csv" id="file" class="form-control-file">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div>
-                                <button type="submit" id="submit" name="Import" class="btn btn-primary button-loading" data-loading-text="Loading...">Importar</button>
-                            </div>
-                        </div>
-                </form>
+<h3>Importar Arquivo</h3>
+    <form class="form-horizontal" action="" method="post" enctype="multipart/form-data" style="margin:auto;">
+        <div class="input-group">
+             <div class="input-group-prepend">
+                <button type="submit" name="Import" onclick="myFunction()" class="btn btn-primary mb-2">Upload</button>
+            </div>
+            <div class="custom-file">
+                <input type="file" name="arq_csv" class="custom-file-input" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" required>
+                <label class="custom-file-label" for="inputGroupFile01">Escolher arquivo...</label>
             </div>
         </div>
+    </form>
+
+</div>
+
+

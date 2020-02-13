@@ -126,4 +126,9 @@ class DB
         return $this->_last_id;
     }
 
+    public function pdo()
+    {
+        return $this->_pdo;
+    }
+
 }
