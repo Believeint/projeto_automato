@@ -1,7 +1,7 @@
 <?php
 $db = DB::getInstance();
 
-$db->getDistinct("arquivo_transacao", "id_arquivo");
+$db->getAll('Arquivo');
 
 $arquivos = $db->results();
 
@@ -16,7 +16,7 @@ if (isset($_POST['Consultar'])) {
     <div class="input-group">
         <select class="custom-select" name="selectt" id="inputGroupSelect04">
             <?php foreach ($arquivos as $arquivo) {?>
-                <option value="<?php echo $arquivo->id_arquivo; ?>">Arquivo <?php echo $arquivo->id_arquivo; ?></option>
+                <option value="<?php echo $arquivo->id; ?>">Arquivo <?php echo escape($arquivo->id); ?> / Importado em <?php echo escape(date("d/m/Y h:m:s", strtotime($arquivo->data_envio))); ?></option>
             <?php }?>
         </select>
         <div class="input-group-append">

@@ -14,5 +14,3 @@ function formatBytes($bytes, $precision = 2)
 
     return round($bytes, $precision) . ' ' . $units[$pow];
 }
-
-echo formatBytes(1024);

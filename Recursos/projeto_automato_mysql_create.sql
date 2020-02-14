@@ -1,3 +1,9 @@
+DROP DATABASE IF EXISTS automato;
+CREATE DATABASE automato
+CHARACTER
+SET utf8mb4
+COLLATE utf8mb4_general_ci;
+
 CREATE TABLE `Transacao`
 (
 	`transacao_id` VARCHAR
@@ -26,8 +32,10 @@ CREATE TABLE `Transacao`
 (60),
 	`num_envio` VARCHAR
 (60),
-	`data_transacao` DATETIME NOT NULL,
-	`data_compensacao` DATETIME NOT NULL,
+	`data_transacao` VARCHAR
+(30),
+	`data_compensacao` VARCHAR
+(30),
 	`ref_transacao` VARCHAR
 (60),
 	`parcelas` INT
@@ -37,7 +45,7 @@ CREATE TABLE `Transacao`
 	`codigo_venda` VARCHAR
 (20) NOT NULL,
 	`serial_leitor` VARCHAR
-(20) NOT NULL,
+(30) NOT NULL,
 	`recebimentos` INT
 (3) NOT NULL,
 	`recebidos` INT

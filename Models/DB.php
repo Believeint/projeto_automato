@@ -102,9 +102,27 @@ class DB
         $this->query($sql);
     }
 
+    public function getJoinTransacaoArquivo($id)
+    {
+        $sql = "SELECT serial_leitor, debito_credito, tipo_pagamento, valor_bruto, valor_taxa, parcelas, data_transacao, valor_recebido FROM transacao t
+        JOIN arquivo_transacao a
+        ON t.transacao_id = a.id_transacao
+        WHERE a.id_arquivo = {$id}
+        HAVING serial_leitor
+        ORDER BY serial_leitor, debito_credito, parcelas DESC";
+
+        $this->query($sql);
+    }
+
     public function get($table, $where)
     {
         return $this->action('SELECT *', $table, $where);
+    }
+
+    public function getAll($table)
+    {
+        $sql = "SELECT * FROM {$table}";
+        return $this->query($sql);
     }
 
     public function first()
