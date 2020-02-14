@@ -15,6 +15,9 @@ switch ($_REQUEST['page']) {
     case 'det-arquivo':
         include 'detalharArquivo.php';
         break;
+    case 'det-transacao':
+        include 'detalharTransacao.php';
+        break;
     default:
         include 'dashboard.php';
         break;

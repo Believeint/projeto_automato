@@ -104,7 +104,7 @@ class DB
 
     public function getJoinTransacaoArquivo($id)
     {
-        $sql = "SELECT serial_leitor, debito_credito, tipo_pagamento, valor_bruto, valor_taxa, parcelas, data_transacao, valor_recebido FROM transacao t
+        $sql = "SELECT transacao_id, serial_leitor, debito_credito, tipo_pagamento, valor_bruto, valor_taxa, parcelas, data_transacao, valor_recebido FROM transacao t
         JOIN arquivo_transacao a
         ON t.transacao_id = a.id_transacao
         WHERE a.id_arquivo = {$id}
@@ -117,6 +117,16 @@ class DB
     public function get($table, $where)
     {
         return $this->action('SELECT *', $table, $where);
+    }
+
+    public function formatMoney($valor, $moeda)
+    {
+        if ($moeda == 'real') {
+            return 'R$' . number_format($valor, 2, ',', '.');
+        } else {
+            return number_format($valor, 2, ',', '.');
+        }
+
     }
 
     public function getAll($table)
