@@ -8,7 +8,6 @@ switch ($_REQUEST['page']) {
     case 'imp-arquivo':
         include 'importarArquivo.php';
         break;
-
     case 'pes-arquivo':
         include 'pesquisarArquivo.php';
         break;
@@ -17,6 +16,9 @@ switch ($_REQUEST['page']) {
         break;
     case 'det-transacao':
         include 'detalharTransacao.php';
+        break;
+    case 'cad-cliente':
+        include 'cadastrarCliente.php';
         break;
     default:
         include 'dashboard.php';

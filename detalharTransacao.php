@@ -32,7 +32,7 @@ if (isset($_REQUEST['id'])) {
 <?php foreach ($resultados as $resultado): ?>
     <?php foreach ($resultado as $key => $value): ?>
         <ul class="list-group">
-        <li class="list-group-item d-flex justify-content-between align-items-center">
+        <li class="list-group-item d-flex justify-content-between align-items-center h5 text-capitalize">
             <?php echo escape($key); ?>
             <span class="badge badge-primary badge-pill">  <?php echo escape($value); ?></span>
         </li>

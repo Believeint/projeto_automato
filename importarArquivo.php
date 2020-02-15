@@ -111,7 +111,8 @@ if (isset($_POST['Import'])) {
             $dbh->commit();
 
         } catch (PDOException $e) {
-            echo "<div class='alert alert-danger text-center' role='alert'>Erro: Não foi possível importar, Já existe uma Transação com o ID/ Ou arquivo Inválido</div>";
+            echo $e->getMessage();
+            //echo "<div class='alert alert-danger text-center' role='alert'>Erro: Não foi possível importar, Já existe uma Transação com o ID/ Ou arquivo Inválido</div>";
             $dbh->rollback();
         }
     }
@@ -120,7 +121,7 @@ if (isset($_POST['Import'])) {
 ?>
 
 <div class="container">
-<h4 class="text-center" style="margin-bottom: 50px;">Importar arquivo <span class="badge badge-secondary"><i class="fa fa-plus"></i></span></h4>
+<h4 class="text-center" style="margin-bottom: 50px;">Importar arquivo <span class="badge badge-secondary"><i class="fa fa-download"></i></i></span></h4>
     <form class="form-horizontal" action="" method="post"  enctype="multipart/form-data" style="margin:auto;">
         <div class="input-group">
             <div class="input-group-prepend">
@@ -135,6 +136,7 @@ if (isset($_POST['Import'])) {
 
 
 </div>
+<script src="js/jquery-3.1.1.slim.min.js"></script>
 
 <script>
     $('#inputGroupFile01').on('change',function(){

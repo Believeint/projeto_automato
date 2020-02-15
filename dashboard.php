@@ -1,1 +1,3 @@
-<h1>Bem Vindo</h1>
+<div class="container">
+    <h1>Dashboard</h1>
+</div>

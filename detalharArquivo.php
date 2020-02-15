@@ -24,7 +24,10 @@ if (isset($_REQUEST['id'])) {
 
 ?>
 
-<h4 class="text-center" style="margin-bottom: 50px;">Detalhar arquivo <span class="badge badge-secondary"><i class="fa fa-search"></i></span></h4>
+<div>
+<h4 class="text-center">Detalhar arquivo <span class="badge badge-secondary"><i class="fa fa-search"></i></span></h4>
+<p class="text-center" style="margin-bottom: 50px;"><?php echo escape($db->count()); ?> Resultado(s)</p>
+</div>
 <?php foreach ($clientes as $cliente): ?>
 <table class="table">
   <thead>
@@ -50,16 +53,26 @@ if (isset($_REQUEST['id'])) {
             <td><?php echo escape($resultado->valor_bruto); ?></td>
             <td><?php echo escape($resultado->valor_recebido); ?></td>
             <td>
-             <?php switch ($resultados) {
-    case $resultado->debito_credito == "Crédito":
-        echo "É Crédito...";
+
+            <?php
+switch ($resultado) {
+    case $resultado->parcelas == 1:
+        $resultado->valor_bruto = number_format(str_replace(',', '.', str_replace('.', '', str_replace('R$', '', $resultado->valor_bruto))), 2, '.', '');
+        echo $db->formatMoney($resultado->valor_bruto * 0.005, 'real');
         break;
-    case $resultado->deito_credito == "Débito":
-        echo "É Débito...";
+    case $resultado->parcelas > 1 && $resultado->parcelas <= 7:
+        $resultado->valor_bruto = number_format(str_replace(',', '.', str_replace('.', '', str_replace('R$', '', $resultado->valor_bruto))), 2, '.', '');
+        echo $db->formatMoney($resultado->valor_bruto * 0.01, 'real');
+        break;
+    case $resultado->parcelas > 7 && $resultado->parcelas <= 12:
+        $resultado->valor_bruto = number_format(str_replace(',', '.', str_replace('.', '', str_replace('R$', '', $resultado->valor_bruto))), 2, '.', '');
+        echo $db->formatMoney($resultado->valor_bruto * 0.015, 'real');
+        break;
     default:
-        # code...
+        echo "N/A";
         break;
-}?>
+}
+?>
             </td>
             <td><a href="index.php?page=det-transacao&id=<?php echo $resultado->transacao_id; ?>" title="Detalhes"><i class="fa fa-info-circle"></i></a></td>
         </tr>

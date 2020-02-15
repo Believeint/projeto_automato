@@ -98,7 +98,7 @@ class DB
 
     public function getDistinct($table, $field)
     {
-        $sql = "SELECT DISTINCT {$field} FROM {$table}";
+        $sql = "SELECT DISTINCT {$field} FROM {$table} HAVING serial_leitor";
         $this->query($sql);
     }
 

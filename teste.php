@@ -15,8 +15,7 @@ function formatBytes($bytes, $precision = 2)
     return round($bytes, $precision) . ' ' . $units[$pow];
 }
 
-$valor = "45138.08";
-
-$novovalor = number_format($valor, 2, ',', '.');
+$valor = "$45.138,08";
+$novovalor = number_format(str_replace(',', '.', str_replace('.', '', str_replace('$', '', $valor))), 2, '.', '');
 
 echo $novovalor;
