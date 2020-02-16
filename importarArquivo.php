@@ -111,8 +111,8 @@ if (isset($_POST['Import'])) {
             $dbh->commit();
 
         } catch (PDOException $e) {
-            echo $e->getMessage();
-            //echo "<div class='alert alert-danger text-center' role='alert'>Erro: Não foi possível importar, Já existe uma Transação com o ID/ Ou arquivo Inválido</div>";
+            //echo $e->getMessage();
+            echo "<div class='alert alert-danger text-center' role='alert'>Erro: Não foi possível importar, Já existe uma Transação com o ID/ Ou arquivo Inválido</div>";
             $dbh->rollback();
         }
     }

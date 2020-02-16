@@ -74,18 +74,36 @@ CREATE TABLE `Cliente`
 	`nome` VARCHAR
 (60),
 	`serial_leitor` VARCHAR
-(20) NOT NULL,
+(20) NOT NULL UNIQUE,
 	`email` VARCHAR
 (36),
 	`contato` VARCHAR
 (36),
-	`taxa_deb_1x` DECIMAL
+	`taxa_deb` DECIMAL
 (3,2) NOT NULL,
 	`taxa_cred_1x` DECIMAL
 (3,2) NOT NULL,
-	`taxa_cred_2xa6x` DECIMAL
+	`taxa_cred_2x` DECIMAL
 (3,2) NOT NULL,
-	`taxa_cred_7xa12x` DECIMAL
+	`taxa_cred_3x` DECIMAL
+(3,2) NOT NULL,
+	`taxa_cred_4x` DECIMAL
+(3,2) NOT NULL,
+	`taxa_cred_5x` DECIMAL
+(3,2) NOT NULL,
+	`taxa_cred_6x` DECIMAL
+(3,2) NOT NULL,
+	`taxa_cred_7x` DECIMAL
+(3,2) NOT NULL,
+	`taxa_cred_8x` DECIMAL
+(3,2) NOT NULL,
+	`taxa_cred_9x` DECIMAL
+(3,2) NOT NULL,
+	`taxa_cred_10x` DECIMAL
+(3,2) NOT NULL,
+	`taxa_cred_11x` DECIMAL
+(3,2) NOT NULL,
+	`taxa_cred_12x` DECIMAL
 (3,2) NOT NULL,
 	PRIMARY KEY
 (`id`)

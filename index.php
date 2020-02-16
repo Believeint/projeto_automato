@@ -10,7 +10,7 @@ require_once "Core/init.php";
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" Content="IE-edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Sistema | Automato</title>
+        <title>Sistema | Automatic</title>
         <link rel="stylesheet" href="css/font-awesome.min.css">
         <link rel="stylesheet" href="css/bootstrap.min.css">
 
@@ -18,7 +18,7 @@ require_once "Core/init.php";
     <body>
         <nav class="navbar navbar-expand-lg navbar-light bg-light" style="margin-bottom:50px;">
             <img src="imagens/logo.png" width="70px" alt="">
-            <a class="navbar-brand text-monospace font-weight-bold" href="#">AUTOMATO</a>
+            <a class="navbar-brand text-monospace font-weight-bold" href="#">AUTOMATIC</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>

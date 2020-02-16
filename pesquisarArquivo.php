@@ -6,7 +6,7 @@ $db->getAll('Arquivo');
 $arquivos = $db->results();
 
 if (isset($_POST['Consultar'])) {
-    header("Location: index.php?page=det-arquivo&id=" . $_POST['selectt']);
+    header("Location: index.php?page=det-arquivo&id=" . $_POST['selected']);
 }
 
 ?>
@@ -14,10 +14,16 @@ if (isset($_POST['Consultar'])) {
 <h4 class="text-center" style="margin-bottom: 50px;">Pesquisar arquivo <span class="badge badge-secondary"><i class="fa fa-search"></i></span></h4>
 <form action="" method="post">
     <div class="input-group">
-        <select class="custom-select" name="selectt" id="inputGroupSelect04">
-            <?php foreach ($arquivos as $arquivo) {?>
-                <option value="<?php echo $arquivo->id; ?>">Arquivo <?php echo escape($arquivo->id); ?> / Importado em <?php echo escape(date("d/m/Y h:m:s", strtotime($arquivo->data_envio))); ?></option>
-            <?php }?>
+        <select class="custom-select" name="selected" id="inputGroupSelect04">
+            <?php if ($db->count() > 0): ?>
+                <?php $x = 1;?>
+                <?php foreach ($arquivos as $arquivo): ?>
+                    <option value="<?php echo $arquivo->id; ?>">Arquivo <?php echo escape($x); ?> / Importado em <?php echo escape(date("d/m/Y h:i:s", strtotime($arquivo->data_envio))); ?></option>
+                    <?php $x++;?>
+                <?php endforeach;?>
+            <?php else: ?>
+                <option value="none" selected disabled hidden>Nenhum Resultado encontrado...<option>
+            <?php endif;?>
         </select>
         <div class="input-group-append">
             <button class="btn btn-outline-secondary" name="Consultar" type="submit">Consultar</button>

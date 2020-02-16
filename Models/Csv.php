@@ -43,13 +43,20 @@ class Csv
         if (is_file($file)) {
             $handle = fopen($file, 'r');
             $rows = array();
-            while (!feof($handle)) {
-                $row = fgetcsv($handle, 10000, ';');
-                $row = array_map("utf8_encode", $row);
-                if (count($row) > 1) {
-                    $rows[] = $row;
+            // while (!feof($handle)) {
+            //     $row = fgetcsv($handle, 3000, ';');
+            //     $row = array_map("utf8_encode", $row);
+            //     if (count($row) > 1) {
+            //         $rows[] = $row;
+            //     }
+            // }
+            while (($data = fgetcsv($handle, 3000, ";")) !== false) {
+                $data = array_map("utf8_encode", $data);
+                if (count($data) > 1) {
+                    $rows[] = $data;
                 }
             }
+
             $this->_rows = $rows;
             return true;
         } else {
