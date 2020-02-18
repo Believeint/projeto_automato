@@ -97,6 +97,27 @@ class DB
 
     }
 
+    public function updateTransacaoCli($table, $id, $fields = array())
+    {
+        $set = '';
+        $x = 1;
+
+        foreach ($fields as $field => $value) {
+            $set .= "{$field} = ?";
+            if ($x < count($fields)) {
+                $set .= ", ";
+            }
+        }
+
+        $sql = "UPDATE {$table} SET {$set} WHERE serial_leitor = '{$id}'";
+        if (!$this->query($sql, $fields)->error()) {
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
     public function getDistinct($table, $field)
     {
         $sql = "SELECT DISTINCT {$field} FROM {$table} HAVING serial_leitor";
@@ -105,9 +126,27 @@ class DB
 
     public function getJoinTransacaoArquivo($id)
     {
-        $sql = "SELECT transacao_id, serial_leitor, debito_credito, tipo_pagamento, valor_bruto, valor_taxa, parcelas, data_transacao, valor_recebido FROM transacao t
-        JOIN arquivo_transacao a
-        ON t.transacao_id = a.id_transacao
+        // $sql = "SELECT transacao_id, serial_leitor, debito_credito, tipo_pagamento, valor_bruto, valor_taxa, parcelas, data_transacao, valor_recebido, id_cliente FROM transacao t
+        // JOIN arquivo_transacao a
+        // ON t.transacao_id = a.id_transacao
+        // WHERE a.id_arquivo = {$id}
+        // HAVING serial_leitor
+        // ORDER BY serial_leitor, debito_credito, parcelas DESC";
+
+        // $sql = "SELECT t.transacao_id, t.serial_leitor, t.debito_credito, t.tipo_pagamento, t.valor_bruto, t.valor_taxa, t.parcelas, t.data_transacao, t.valor_recebido,
+        // c.id, c.nome, c.taxa_deb, c.taxa_cred_1x, c.taxa_cred_2x, c.taxa_cred_3x, c.taxa_cred_4x, c.taxa_cred_5x, c.taxa_cred_6x, c.taxa_cred_7x, c.taxa_cred_8x,
+        // c.taxa_cred_9x, c.taxa_cred_10x, c.taxa_cred_11x, c.taxa_cred_12x FROM Transacao t
+        // JOIN cliente c ON t.id_cliente = c.id
+        // JOIN arquivo_transacao a ON t.transacao_id = a.id_transacao
+        // WHERE a.id_arquivo = {$id}  and c.id = t.id_cliente
+        // HAVING serial_leitor
+        // ORDER BY serial_leitor, debito_credito, parcelas DESC";
+
+        $sql = "SELECT t.transacao_id, t.serial_leitor, t.debito_credito, t.codigo_venda, t.tipo_pagamento, t.valor_bruto, t.valor_taxa, t.parcelas, t.data_transacao, t.valor_recebido,
+        c.id, c.nome, c.taxa_deb, c.taxa_cred_1x, c.taxa_cred_2x, c.taxa_cred_3x, c.taxa_cred_4x, c.taxa_cred_5x, c.taxa_cred_6x, c.taxa_cred_7x, c.taxa_cred_8x,
+        c.taxa_cred_9x, c.taxa_cred_10x, c.taxa_cred_11x, c.taxa_cred_12x FROM Transacao t
+        LEFT JOIN cliente c ON t.id_cliente = c.id
+        LEFT JOIN arquivo_transacao a ON t.transacao_id = a.id_transacao
         WHERE a.id_arquivo = {$id}
         HAVING serial_leitor
         ORDER BY serial_leitor, debito_credito, parcelas DESC";

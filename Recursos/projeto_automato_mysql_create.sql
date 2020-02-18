@@ -63,6 +63,8 @@ CREATE TABLE `Transacao`
 (8,2) NOT NULL,
 	`bandeira_cartao_credito` VARCHAR
 (30) NOT NULL,
+	`id_cliente` INT
+(10),
 	PRIMARY KEY
 (`transacao_id`)
 );
@@ -80,31 +82,31 @@ CREATE TABLE `Cliente`
 	`contato` VARCHAR
 (36),
 	`taxa_deb` DECIMAL
-(3,2) NOT NULL,
+(5,2) NOT NULL,
 	`taxa_cred_1x` DECIMAL
-(3,2) NOT NULL,
+(5,2) NOT NULL,
 	`taxa_cred_2x` DECIMAL
-(3,2) NOT NULL,
+(5,2) NOT NULL,
 	`taxa_cred_3x` DECIMAL
-(3,2) NOT NULL,
+(5,2) NOT NULL,
 	`taxa_cred_4x` DECIMAL
-(3,2) NOT NULL,
+(5,2) NOT NULL,
 	`taxa_cred_5x` DECIMAL
-(3,2) NOT NULL,
+(5,2) NOT NULL,
 	`taxa_cred_6x` DECIMAL
-(3,2) NOT NULL,
+(5,2) NOT NULL,
 	`taxa_cred_7x` DECIMAL
-(3,2) NOT NULL,
+(5,2) NOT NULL,
 	`taxa_cred_8x` DECIMAL
-(3,2) NOT NULL,
+(5,2) NOT NULL,
 	`taxa_cred_9x` DECIMAL
-(3,2) NOT NULL,
+(5,2) NOT NULL,
 	`taxa_cred_10x` DECIMAL
-(3,2) NOT NULL,
+(5,2) NOT NULL,
 	`taxa_cred_11x` DECIMAL
-(3,2) NOT NULL,
+(5,2) NOT NULL,
 	`taxa_cred_12x` DECIMAL
-(3,2) NOT NULL,
+(5,2) NOT NULL,
 	PRIMARY KEY
 (`id`)
 );
@@ -126,6 +128,11 @@ CREATE TABLE `Arquivo_Transacao`
 	PRIMARY KEY
 (`id_arquivo`,`id_transacao`)
 );
+
+ALTER TABLE `Transacao`
+ADD CONSTRAINT `Transacao_fk0` FOREIGN KEY
+(`id_cliente`) REFERENCES `Cliente`
+(`id`);
 
 ALTER TABLE `Arquivo_Transacao`
 ADD CONSTRAINT `Arquivo_Transacao_fk0` FOREIGN KEY

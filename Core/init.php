@@ -2,6 +2,8 @@
 
 //error_reporting(0);
 
+session_start();
+
 $GLOBALS['config'] = array(
     'mysql' => array(
         'host' => '127.0.0.1',

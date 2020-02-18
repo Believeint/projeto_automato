@@ -1,5 +1,6 @@
 <?php
 
+include 'Core/init.php';
 function formatBytes($bytes, $precision = 2)
 {
     $units = array('B', 'KB', 'MB', 'GB', 'TB');
@@ -15,4 +16,9 @@ function formatBytes($bytes, $precision = 2)
     return round($bytes, $precision) . ' ' . $units[$pow];
 }
 
-echo phpinfo();
+$valor = 2270.10;
+$taxa = 1.0;
+
+$db = DB::getInstance();
+
+echo $db->formatMoney(($valor / 100) * $taxa, 'real');

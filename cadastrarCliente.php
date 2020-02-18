@@ -16,17 +16,34 @@ $cli_n_cadastrados = array_diff($tr_serial_leitor, $cli_serial_leitor);
 
 if (isset($_POST['Cadastrar'])) {
     try {
+        $serial_leitor = Input::get('serial_leitor');
         $cliente = array(
             'nome' => Input::get('nome'),
             'serial_leitor' => Input::get('serial_leitor'),
             'email' => Input::get('email'),
             'contato' => Input::get('contato'),
-            'taxa_deb_1x' => Input::get('taxa_deb_1x'),
+            'taxa_deb' => Input::get('taxa_deb'),
             'taxa_cred_1x' => Input::get('taxa_cred_1x'),
-            'taxa_cred_2xa6x' => Input::get('taxa_cred_2x_6x'),
-            'taxa_cred_7xa12x' => Input::get('taxa_cred_7x_12x'),
+            'taxa_cred_2x' => Input::get('taxa_cred_2x'),
+            'taxa_cred_3x' => Input::get('taxa_cred_3x'),
+            'taxa_cred_4x' => Input::get('taxa_cred_4x'),
+            'taxa_cred_5x' => Input::get('taxa_cred_5x'),
+            'taxa_cred_6x' => Input::get('taxa_cred_6x'),
+            'taxa_cred_7x' => Input::get('taxa_cred_7x'),
+            'taxa_cred_8x' => Input::get('taxa_cred_8x'),
+            'taxa_cred_9x' => Input::get('taxa_cred_9x'),
+            'taxa_cred_10x' => Input::get('taxa_cred_10x'),
+            'taxa_cred_11x' => Input::get('taxa_cred_11x'),
+            'taxa_cred_12x' => Input::get('taxa_cred_12x'),
         );
         $db->insert("Cliente", $cliente);
+        $id = $db->lastid();
+
+        $cliente_transacao = array(
+            'id_cliente' => $id,
+        );
+        $db->updateTransacaoCli('Transacao', $serial_leitor, $cliente_transacao);
+
         Session::flash('home', 'Cadastro realizado com sucesso');
         header('Location: index.php');
     } catch (Exception $e) {
@@ -100,7 +117,7 @@ if (count($cli_n_cadastrados) == 0) {
                     <div class="col-sm-2">
                         <div class="form-group">
                             <label for="taxa_deb">Débito</label>
-                            <input type="text" class="form-control" name="taxa_deb" id="taxa_deb" maxlength="7" required value="<?php echo escape(Input::get('taxa_deb_1x')); ?>">
+                            <input type="text" class="form-control" name="taxa_deb" id="taxa_deb" maxlength="7" required value="<?php echo escape(Input::get('taxa_deb')); ?>">
                         </div>
                     </div>
 
@@ -211,9 +228,18 @@ if (count($cli_n_cadastrados) == 0) {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
 
 <script type="text/javascript">
-    $("#taxa_deb_1x").mask('##0,00%', {reverse: true});
+    $("#taxa_deb").mask('##0,00%', {reverse: true});
     $("#taxa_cred_1x").mask('##0,00%', {reverse: true});
-    $("#taxa_cred_2x_6x").mask('##0,00%', {reverse: true});
-    $("#taxa_cred_7x_12x").mask('##0,00%', {reverse: true});
-    $("#contato").mask('(00) 000000000');
+    $("#taxa_cred_2x").mask('##0,00%', {reverse: true});
+    $("#taxa_cred_3x").mask('##0,00%', {reverse: true});
+    $("#taxa_cred_4x").mask('##0,00%', {reverse: true});
+    $("#taxa_cred_5x").mask('##0,00%', {reverse: true});
+    $("#taxa_cred_6x").mask('##0,00%', {reverse: true});
+    $("#taxa_cred_7x").mask('##0,00%', {reverse: true});
+    $("#taxa_cred_8x").mask('##0,00%', {reverse: true});
+    $("#taxa_cred_9x").mask('##0,00%', {reverse: true});
+    $("#taxa_cred_10x").mask('##0,00%', {reverse: true});
+    $("#taxa_cred_11x").mask('##0,00%', {reverse: true});
+    $("#taxa_cred_12x").mask('##0,00%', {reverse: true});
+    $("#contato").mask('(00) 00000-0000');
 </script>
