@@ -209,7 +209,7 @@ if (count($cli_n_cadastrados) == 0) {
                     <dic class="col-sm-2">
                         <div class="form-group">
                             <label for="taxa_cred_12x">Crédito/12x</label>
-                            <input type="text" class="form-control" name="form-control" id="taxa_cred_12x" maxlength="7" required value="<?php echo escape(Input::get('taxa_cred_12x')) ?>">
+                            <input type="text" class="form-control" name="taxa_cred_12x" id="taxa_cred_12x" maxlength="7" required value="<?php echo escape(Input::get('taxa_cred_12x')) ?>">
                         </div>
                     </dic>
                 </div>
@@ -228,18 +228,18 @@ if (count($cli_n_cadastrados) == 0) {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
 
 <script type="text/javascript">
-    $("#taxa_deb").mask('##0,00%', {reverse: true});
-    $("#taxa_cred_1x").mask('##0,00%', {reverse: true});
-    $("#taxa_cred_2x").mask('##0,00%', {reverse: true});
-    $("#taxa_cred_3x").mask('##0,00%', {reverse: true});
-    $("#taxa_cred_4x").mask('##0,00%', {reverse: true});
-    $("#taxa_cred_5x").mask('##0,00%', {reverse: true});
-    $("#taxa_cred_6x").mask('##0,00%', {reverse: true});
-    $("#taxa_cred_7x").mask('##0,00%', {reverse: true});
-    $("#taxa_cred_8x").mask('##0,00%', {reverse: true});
-    $("#taxa_cred_9x").mask('##0,00%', {reverse: true});
-    $("#taxa_cred_10x").mask('##0,00%', {reverse: true});
-    $("#taxa_cred_11x").mask('##0,00%', {reverse: true});
-    $("#taxa_cred_12x").mask('##0,00%', {reverse: true});
+    $("#taxa_deb").mask('##0.00%', {reverse: true});
+    $("#taxa_cred_1x").mask('##0.00%', {reverse: true});
+    $("#taxa_cred_2x").mask('##0.00%', {reverse: true});
+    $("#taxa_cred_3x").mask('##0.00%', {reverse: true});
+    $("#taxa_cred_4x").mask('##0.00%', {reverse: true});
+    $("#taxa_cred_5x").mask('##0.00%', {reverse: true});
+    $("#taxa_cred_6x").mask('##0.00%', {reverse: true});
+    $("#taxa_cred_7x").mask('##0.00%', {reverse: true});
+    $("#taxa_cred_8x").mask('##0.00%', {reverse: true});
+    $("#taxa_cred_9x").mask('##0.00%', {reverse: true});
+    $("#taxa_cred_10x").mask('##0.00%', {reverse: true});
+    $("#taxa_cred_11x").mask('##0.00%', {reverse: true});
+    $("#taxa_cred_12x").mask('##0.00%', {reverse: true});
     $("#contato").mask('(00) 00000-0000');
 </script>
