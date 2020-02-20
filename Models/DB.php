@@ -118,6 +118,27 @@ class DB
 
     }
 
+    public function update($table, $id, $fields = array())
+    {
+        $set = '';
+        $x = 1;
+
+        foreach ($fields as $field => $value) {
+            $set .= "{$field} = ?";
+            if ($x < count($fields)) {
+                $set .= ", ";
+            }
+        }
+
+        $sql = "UPDATE {$table} SET {$set} WHERE id = {$id}";
+        var_dump($sql);
+        if (!$this->query($sql, $fields)->error()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public function getDistinct($table, $field)
     {
         $sql = "SELECT DISTINCT {$field} FROM {$table} HAVING serial_leitor";

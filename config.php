@@ -23,6 +23,12 @@ switch ($_REQUEST['page']) {
     case 'tot-cli-arq':
         include 'totalClienteArquivo.php';
         break;
+    case 'pes-cliente':
+        include 'pesquisarCliente.php';
+        break;
+    case 'edi-cliente':
+        include 'editarCliente.php';
+        break;
     default:
         include 'dashboard.php';
         break;

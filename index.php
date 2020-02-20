@@ -43,7 +43,7 @@ require_once "Core/init.php";
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" href="index.php?page=cad-cliente">Cadastrar</a>
-                        <a class="dropdown-item" href="#">Consultar</a>
+                        <a class="dropdown-item" href="index.php?page=pes-cliente">Consultar</a>
                         <a class="dropdown-item disabled" href="#">Disabled</a>
                     </div>
                 </li>
@@ -63,15 +63,11 @@ if (Session::exists('home')) {
 include 'config.php';
 
 ?>
-    <script type="text/javascript">
-        setTimeout(function () {
-            $("#alert").fadeOut;
-        }, 2000);
-    </script>
-    <!-- <script src="js/jquery.js"></script>
-    <script src="js/jquery-3.2.1.slim.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script> -->
+
+<script src="js/jquery.js"></script>
+<script src="js/jquery-3.2.1.slim.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 
 </body>
 </html>

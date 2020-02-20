@@ -1,17 +1,7 @@
 <?php
 
-require 'Core/init.php';
-
-$db = DB::getInstance();
-
-$sql = "INSERT INTO teste2 (nome, nome2) VALUES('elias', 'elias2')";
-
-if ($db->query($sql)) {
-    echo "Success!";
+if ($_POST['req']) {
+    echo "OK";
 } else {
-    echo "Fail!";
+    echo "NO";
 }
-
-var_dump($db);
-?>
-<h1>HELLO</h1>
