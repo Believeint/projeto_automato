@@ -172,7 +172,7 @@ class DB
         // HAVING serial_leitor
         // ORDER BY serial_leitor, debito_credito, parcelas DESC";
 
-        $sql = "SELECT t.transacao_id, t.serial_leitor, t.debito_credito, t.codigo_venda, t.tipo_pagamento, t.valor_bruto, t.valor_taxa, t.parcelas, t.data_transacao, t.valor_recebido,
+        $sql = "SELECT a.id_arquivo, t.transacao_id, t.serial_leitor, t.debito_credito, t.codigo_venda, t.tipo_pagamento, t.valor_bruto, t.valor_taxa, t.parcelas, t.data_transacao, t.valor_recebido,
         c.id, c.nome, c.taxa_deb, c.taxa_cred_1x, c.taxa_cred_2x, c.taxa_cred_3x, c.taxa_cred_4x, c.taxa_cred_5x, c.taxa_cred_6x, c.taxa_cred_7x, c.taxa_cred_8x,
         c.taxa_cred_9x, c.taxa_cred_10x, c.taxa_cred_11x, c.taxa_cred_12x FROM Transacao t
         LEFT JOIN cliente c ON t.id_cliente = c.id
@@ -207,7 +207,10 @@ class DB
 
     public function first()
     {
-        return $this->results()[0];
+        if ($this->count() > 0) {
+            return $this->results()[0];
+        }
+
     }
 
     public function error()

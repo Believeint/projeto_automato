@@ -85,6 +85,7 @@ $is_client = false;
 				<?php
 $total_bruto += $transacao->valor_bruto;
 $total_recebido += $transacao->valor_bruto - $transacao->valor_taxa;
+
 if ($transacao->id != null) {$is_client = true;} else { $is_client = false;}
 ?>
 				        <tr class="<?php if ($transacao->nome != null) {echo "thead-light";}?>">
@@ -221,6 +222,30 @@ if ($transacao->id != null) {
             <th>
 <?php
 $liquido_cliente = $total_recebido - $total_taxa_cliente;
+$lucro = $total_recebido - $liquido_cliente - $total_taxa_iss;
+
+//SALVAR RELATÓRIO
+if ($is_client) {
+
+    $db->getAll('Arquivo_Relatorio');
+
+    $id_results = $db->results();
+
+    $idCliente = array_column($id_results, 'id_cliente');
+
+    if (!in_array($transacao->id, $idCliente)) {
+
+        $relatorio = array(
+            'id_arquivo' => $transacao->id_arquivo,
+            'id_cliente' => $transacao->id,
+            'liquido_cliente' => $liquido_cliente,
+            'lucro' => $lucro,
+        );
+
+        $db->insert('Arquivo_Relatorio', $relatorio);
+    }
+}
+
 $lucro = $db->formatMoney($total_recebido - $liquido_cliente - $total_taxa_iss, 'real');
 $liquido_cliente = $db->formatMoney($total_recebido - $total_taxa_cliente, 'real');
 
