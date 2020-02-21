@@ -132,14 +132,17 @@ CREATE TABLE `Arquivo_Transacao`
 ALTER TABLE `Transacao`
 ADD CONSTRAINT `Transacao_fk0` FOREIGN KEY
 (`id_cliente`) REFERENCES `Cliente`
-(`id`);
+(`id`) ON
+DELETE CASCADE;
 
 ALTER TABLE `Arquivo_Transacao`
 ADD CONSTRAINT `Arquivo_Transacao_fk0` FOREIGN KEY
 (`id_arquivo`) REFERENCES `Arquivo`
-(`id`);
+(`id`) ON
+DELETE CASCADE;
 
 ALTER TABLE `Arquivo_Transacao`
 ADD CONSTRAINT `Arquivo_Transacao_fk1` FOREIGN KEY
 (`id_transacao`) REFERENCES `Transacao`
-(`transacao_id`);
+(`transacao_id`)ON
+DELETE CASCADE;

@@ -29,6 +29,12 @@ switch ($_REQUEST['page']) {
     case 'edi-cliente':
         include 'editarCliente.php';
         break;
+    case 'ger-arquivo':
+        include 'gerarRelatorio.php';
+        break;
+    case 'rel-arquivo':
+        include 'relatorioArquivo.php';
+        break;
     default:
         include 'dashboard.php';
         break;

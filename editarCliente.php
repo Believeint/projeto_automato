@@ -57,6 +57,8 @@ if ($_REQUEST['id']) {
     header('Location: index.php');
 }
 
+var_dump($cli_n_cadastrados);
+
 ?>
 
 <div class="container">
@@ -77,14 +79,12 @@ if ($_REQUEST['id']) {
         <div class="form-group">
             <label for="serial_leitor">Serial Leitor</label>
             <select name="serial_leitor" id="serial_leitor" class="form-control" required>
-                <option value="<?php echo escape($cliente->serial_leitor); ?>" selected><?php echo escape($cliente->serial_leitor); ?></option>
-                    <?php if (count($cli_n_cadastrados) > 0): ?>
-                        <?php foreach ($cli_n_cadastrados as $cli_disp): ?>
-                            <option value="<?php echo escape($cli_disp); ?>"><?php echo escape($cli_disp); ?></option>
-                        <?php endforeach;?>
-                    <?php else: ?>
-                        <option value="none" selected disabled hidden>Nenhum Resultado encontrado...<option>
-                    <?php endif;?>
+                <option value="<?php $cliente->serial_leitor;?>"><?php echo $cliente->serial_leitor; ?></option>
+                <?php if ($cli_n_cadastrados > 0): ?>
+                    <?php foreach ($cli_n_cadastrados as $cli_n_cadastrado): ?>
+                        <option value="<?php echo $cli_n_cadastrado; ?>"><?php echo $cli_n_cadastrado; ?></option>
+                    <?php endforeach;?>
+                <?php endif;?>
             </select>
         </div>
     </div>

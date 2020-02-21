@@ -33,7 +33,7 @@ require_once "Core/init.php";
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" href="index.php?page=pes-arquivo">Consultar</a>
-                        <a class="dropdown-item disabled" href="#">Disabled</a>
+                        <a class="dropdown-item" href="index.php?page=ger-arquivo">Relatório</a>
                         <a class="dropdown-item disabled" href="#">Disabled</a>
                     </div>
                 </li>

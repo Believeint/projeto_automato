@@ -72,6 +72,11 @@ class DB
         }
     }
 
+    public function delete($table, $where)
+    {
+        return $this->action('DELETE', $table, $where);
+    }
+
     public function insert($table, $fields = array())
     {
         $keys = array_keys($fields);
@@ -122,12 +127,16 @@ class DB
     {
         $set = '';
         $x = 1;
+        $count = count($fields);
 
-        foreach ($fields as $field => $value) {
-            $set .= "{$field} = ?";
-            if ($x < count($fields)) {
+        var_dump($count);
+
+        foreach ($fields as $name => $value) {
+            $set .= "{$name} = ?";
+            if ($x < $count) {
                 $set .= ", ";
             }
+            $x++;
         }
 
         $sql = "UPDATE {$table} SET {$set} WHERE id = {$id}";

@@ -1,12 +1,15 @@
 <?php
+
 $db = DB::getInstance();
 
 $db->getAll('Arquivo');
 
 $arquivos = $db->results();
 
-if (isset($_POST['Consultar'])) {
-    header("Location: index.php?page=det-arquivo&id=" . $_POST['selected']);
+if (count($arquivos) > 0) {
+    if (isset($_POST['Consultar'])) {
+        header("Location: index.php?page=det-arquivo&id=" . $_POST['selected']);
+    }
 }
 
 ?>
@@ -14,7 +17,7 @@ if (isset($_POST['Consultar'])) {
 <h4 class="text-center" style="margin-bottom: 50px;">Pesquisar arquivo <span class="badge badge-secondary"><i class="fa fa-search"></i></span></h4>
 <form action="" method="post">
     <div class="input-group">
-        <select class="custom-select" name="selected" id="inputGroupSelect04">
+        <select class="custom-select" name="selected" id="inputGroupSelect04" required>
             <?php if ($db->count() > 0): ?>
                 <?php $x = 1;?>
                 <?php foreach ($arquivos as $arquivo): ?>

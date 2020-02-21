@@ -220,9 +220,9 @@ if ($transacao->id != null) {
             </th>
             <th>
 <?php
-
+$liquido_cliente = $total_recebido - $total_taxa_cliente;
+$lucro = $db->formatMoney($total_recebido - $liquido_cliente - $total_taxa_iss, 'real');
 $liquido_cliente = $db->formatMoney($total_recebido - $total_taxa_cliente, 'real');
-$lucro = $db->formatMoney($total_recebido - $total_taxa_cliente - $total_taxa_iss, 'real');
 
 if ($is_client) {echo "<a href='#' title='Total Cliente' onclick=\"enviarTotal('$liquido_cliente', '$lucro')\" data-toggle='modal' data-target='#myModal'><i class='fa fa-search-plus' ></i></a>";}
 ?>
