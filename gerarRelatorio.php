@@ -2,13 +2,13 @@
 
 $db = DB::getInstance();
 
-$db->getAll('Arquivo');
+$db->selectDistinctIdRelatorio();
 
 $arquivos = $db->results();
 
 if (count($arquivos) > 0) {
     if (isset($_POST['Relatorio'])) {
-        header("Location: index.php?page=rel-arquivo&id=" . $_POST['selected']);
+        header('Location: index.php?page=rel-arquivo&id=' . $_POST['selected']);
     }
 }
 
@@ -21,7 +21,7 @@ if (count($arquivos) > 0) {
                 <?php if ($db->count() > 0): ?>
                     <?php $x = 1;?>
                     <?php foreach ($arquivos as $arquivo): ?>
-                        <option value="<?php echo $arquivo->id; ?>">Arquivo <?php echo escape($x); ?> / Importado em <?php echo escape(date("d/m/Y h:i:s", strtotime($arquivo->data_envio))); ?></option>
+                        <option value="<?php echo $arquivo->id_arquivo; ?>">Arquivo <?php echo escape($x); ?></option>
                         <?php $x++;?>
                     <?php endforeach;?>
                 <?php else: ?>

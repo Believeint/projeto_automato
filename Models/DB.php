@@ -184,9 +184,42 @@ class DB
         $this->query($sql);
     }
 
+    public function getJoinArquivoRelatorio($id)
+    {
+        $sql = "SELECT DISTINCT c.nome, a.liquido_cliente, a.lucro
+        FROM arquivo_relatorio a
+        INNER JOIN cliente c ON a.id_cliente = c.id
+        WHERE a.id_arquivo = {$id}
+        ORDER BY a.id";
+
+        $this->query($sql);
+    }
+
+    public function getAllClientes()
+    {
+        $sql = "SELECT a.id_cliente, c.nome, c.serial_leitor
+        FROM arquivo_relatorio a
+        INNER JOIN cliente c ON a.id_cliente = c.id";
+
+        $this->query($sql);
+    }
+
+    public function selectDistinctIdRelatorio()
+    {
+        $sql = "SELECT DISTINCT id_arquivo FROM
+        arquivo_relatorio";
+
+        $this->query($sql);
+    }
+
     public function get($table, $where)
     {
-        return $this->action('SELECT *', $table, $where);
+        if ($this->action('SELECT *', $table, $where)) {
+            return true;
+        } else {
+            return false;
+        }
+
     }
 
     public function formatMoney($valor, $moeda)

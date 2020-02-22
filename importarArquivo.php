@@ -95,6 +95,9 @@ if (isset($_POST['Import'])) {
                     'bandeira_cartao_credito' => $row['bandeira_cartao_credito'],
                 );
 
+                $transacao_id = $transacao['transacao_id'];
+                $transacao_serial_leitor = $transacao['serial_leitor'];
+
                 // Armazena transacao
                 $db->insert("Transacao", $transacao);
 
@@ -104,6 +107,26 @@ if (isset($_POST['Import'])) {
                 );
                 // Armazena arquivo_transacao
                 $db->insert("arquivo_transacao", $arquivo_transacao);
+
+                // Insere id Usuário se Existir
+                $db->getAllClientes();
+
+                $cli_arq = $db->results();
+
+                $sLeitores = array_column($cli_arq, 'serial_leitor');
+
+                if (in_array($transacao_serial_leitor, $sLeitores)) {
+
+                    foreach ($cli_arq as $cliente) {
+                        if ($cliente->serial_leitor == $transacao_serial_leitor) {
+                            $field = array(
+                                'id_cliente' => $cliente->id_cliente,
+                            );
+                            $sql = "UPDATE transacao SET id_cliente = ? WHERE transacao_id = '$transacao_id'";
+                            $db->query($sql, $field);
+                        }
+                    }
+                }
 
             }
 

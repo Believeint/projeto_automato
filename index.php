@@ -18,7 +18,7 @@ require_once "Core/init.php";
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light" style="margin-bottom:50px;">
         <img src="imagens/logo.png" width="70px" alt="">
-        <a class="navbar-brand text-monospace font-weight-bold" href="#">AUTOMATIC</a>
+        <a class="navbar-brand text-monospace font-weight-bold" href="index.php">AUTOMATIC</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -34,7 +34,6 @@ require_once "Core/init.php";
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" href="index.php?page=pes-arquivo">Consultar</a>
                         <a class="dropdown-item" href="index.php?page=ger-arquivo">Relatório</a>
-                        <a class="dropdown-item disabled" href="#">Disabled</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
@@ -44,11 +43,7 @@ require_once "Core/init.php";
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" href="index.php?page=cad-cliente">Cadastrar</a>
                         <a class="dropdown-item" href="index.php?page=pes-cliente">Consultar</a>
-                        <a class="dropdown-item disabled" href="#">Disabled</a>
                     </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
                 </li>
             </ul>
         </div>

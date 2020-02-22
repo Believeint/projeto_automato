@@ -66,7 +66,7 @@ $is_client = false;
 				<table class="table <?php if ($is_client) {echo 'table-bordered';}?>">
 				  <thead>
 				    <tr>
-				      <th scope="col">Serial Leitor</th>
+				      <th scope="col">S.L/Cliente</th>
 				      <th scope="col">Debito/Crédito</th>
 				      <th scope="col">Codigo da Venda</th>
 				      <th scope="col">Tipo Pagamento</th>
@@ -233,17 +233,15 @@ if ($is_client) {
 
     $idCliente = array_column($id_results, 'id_cliente');
 
-    if (!in_array($transacao->id, $idCliente)) {
+    $relatorio = array(
+        'id_arquivo' => $transacao->id_arquivo,
+        'id_cliente' => $transacao->id,
+        'liquido_cliente' => $liquido_cliente,
+        'lucro' => $lucro,
+    );
 
-        $relatorio = array(
-            'id_arquivo' => $transacao->id_arquivo,
-            'id_cliente' => $transacao->id,
-            'liquido_cliente' => $liquido_cliente,
-            'lucro' => $lucro,
-        );
+    $db->insert('Arquivo_Relatorio', $relatorio);
 
-        $db->insert('Arquivo_Relatorio', $relatorio);
-    }
 }
 
 $lucro = $db->formatMoney($total_recebido - $liquido_cliente - $total_taxa_iss, 'real');

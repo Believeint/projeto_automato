@@ -20,9 +20,6 @@ switch ($_REQUEST['page']) {
     case 'cad-cliente':
         include 'cadastrarCliente.php';
         break;
-    case 'tot-cli-arq':
-        include 'totalClienteArquivo.php';
-        break;
     case 'pes-cliente':
         include 'pesquisarCliente.php';
         break;
@@ -36,6 +33,6 @@ switch ($_REQUEST['page']) {
         include 'relatorioArquivo.php';
         break;
     default:
-        include 'dashboard.php';
+        include 'importarArquivo.php';
         break;
 }

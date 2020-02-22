@@ -57,8 +57,6 @@ if ($_REQUEST['id']) {
     header('Location: index.php');
 }
 
-var_dump($cli_n_cadastrados);
-
 ?>
 
 <div class="container">
@@ -79,7 +77,7 @@ var_dump($cli_n_cadastrados);
         <div class="form-group">
             <label for="serial_leitor">Serial Leitor</label>
             <select name="serial_leitor" id="serial_leitor" class="form-control" required>
-                <option value="<?php $cliente->serial_leitor;?>"><?php echo $cliente->serial_leitor; ?></option>
+                <option value="<?php echo $cliente->serial_leitor; ?>"><?php echo $cliente->serial_leitor; ?></option>
                 <?php if ($cli_n_cadastrados > 0): ?>
                     <?php foreach ($cli_n_cadastrados as $cli_n_cadastrado): ?>
                         <option value="<?php echo $cli_n_cadastrado; ?>"><?php echo $cli_n_cadastrado; ?></option>
