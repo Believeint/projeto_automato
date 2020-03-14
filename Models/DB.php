@@ -129,8 +129,6 @@ class DB
         $x = 1;
         $count = count($fields);
 
-        var_dump($count);
-
         foreach ($fields as $name => $value) {
             $set .= "{$name} = ?";
             if ($x < $count) {
@@ -140,7 +138,7 @@ class DB
         }
 
         $sql = "UPDATE {$table} SET {$set} WHERE id = {$id}";
-        var_dump($sql);
+
         if (!$this->query($sql, $fields)->error()) {
             return true;
         } else {
@@ -175,11 +173,11 @@ class DB
         $sql = "SELECT a.id_arquivo, t.transacao_id, t.serial_leitor, t.debito_credito, t.codigo_venda, t.tipo_pagamento, t.valor_bruto, t.valor_taxa, t.parcelas, t.data_transacao, t.valor_recebido,
         c.id, c.nome, c.taxa_deb, c.taxa_cred_1x, c.taxa_cred_2x, c.taxa_cred_3x, c.taxa_cred_4x, c.taxa_cred_5x, c.taxa_cred_6x, c.taxa_cred_7x, c.taxa_cred_8x,
         c.taxa_cred_9x, c.taxa_cred_10x, c.taxa_cred_11x, c.taxa_cred_12x FROM Transacao t
-        LEFT JOIN cliente c ON t.id_cliente = c.id
-        LEFT JOIN arquivo_transacao a ON t.transacao_id = a.id_transacao
+        LEFT JOIN Cliente c ON t.id_cliente = c.id
+        LEFT JOIN Arquivo_Transacao a ON t.transacao_id = a.id_transacao
         WHERE a.id_arquivo = {$id}
         HAVING serial_leitor
-        ORDER BY serial_leitor, debito_credito, parcelas DESC";
+        ORDER BY serial_leitor, tipo_pagamento DESC, parcelas";
 
         $this->query($sql);
     }
@@ -187,8 +185,8 @@ class DB
     public function getJoinArquivoRelatorio($id)
     {
         $sql = "SELECT DISTINCT c.nome, a.liquido_cliente, a.lucro
-        FROM arquivo_relatorio a
-        INNER JOIN cliente c ON a.id_cliente = c.id
+        FROM Arquivo_Relatorio a
+        INNER JOIN Cliente c ON a.id_cliente = c.id
         WHERE a.id_arquivo = {$id}
         ORDER BY a.id";
 
@@ -198,8 +196,8 @@ class DB
     public function getAllClientes()
     {
         $sql = "SELECT a.id_cliente, c.nome, c.serial_leitor
-        FROM arquivo_relatorio a
-        INNER JOIN cliente c ON a.id_cliente = c.id";
+        FROM Arquivo_Relatorio a
+        INNER JOIN Cliente c ON a.id_cliente = c.id";
 
         $this->query($sql);
     }
@@ -207,7 +205,7 @@ class DB
     public function selectDistinctIdRelatorio()
     {
         $sql = "SELECT DISTINCT id_arquivo FROM
-        arquivo_relatorio";
+        Arquivo_Relatorio";
 
         $this->query($sql);
     }

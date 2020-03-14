@@ -47,8 +47,8 @@ if (isset($_POST['Cadastrar'])) {
         Session::flash('home', 'Cadastro realizado com sucesso');
         header('Location: index.php');
     } catch (Exception $e) {
-        //echo "<div class='alert alert-danger text-center' role='alert'>Não foi possivel cadastrar</div>";
-        echo $e->getMessage();
+        echo "<div class='alert alert-danger text-center' role='alert'>Não foi possivel cadastrar</div>";
+        //echo $e->getMessage();
     }
 
 }
@@ -216,7 +216,7 @@ if (count($cli_n_cadastrados) == 0) {
             </div>
         </fieldset>
 
-        <div class="input-group">
+        <div class="input-group" style="margin-bottom:20px;">
             <button type="submit" name="Cadastrar" class="btn btn-success pull-right"><i class="fa fa-plus-square"></i> CADASTRAR</button>
         </div>
 

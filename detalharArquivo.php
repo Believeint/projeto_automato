@@ -59,6 +59,7 @@ $total_recebido = 0;
 $total_taxa_iss = 0;
 $total_taxa_cliente = 0;
 $is_client = false;
+$total_cliente = 0;
 ?>
 <?php foreach ($grupos as $transacoes): ?>
 			<?php foreach ($transacoes as $transacao) {if ($transacao->id != null) {$is_client = true;} else { $is_client = false;}}?>
@@ -67,9 +68,8 @@ $is_client = false;
 				  <thead>
 				    <tr>
 				      <th scope="col">S.L/Cliente</th>
-				      <th scope="col">Debito/Crédito</th>
-				      <th scope="col">Codigo da Venda</th>
 				      <th scope="col">Tipo Pagamento</th>
+				      <th scope="col">Codigo da Venda</th>
 				      <th scope="col">Parcelas</th>
 				      <th scope="col">Valor Bruto</th>
 				      <th scope="col">Valor Recebido</th>
@@ -90,9 +90,8 @@ if ($transacao->id != null) {$is_client = true;} else { $is_client = false;}
 ?>
 				        <tr class="<?php if ($transacao->nome != null) {echo "thead-light";}?>">
 				            <th><?php if ($transacao->nome != null) {echo escape($transacao->nome);} else {echo escape($transacao->serial_leitor);}?></th>
-				            <td><?php echo escape($transacao->debito_credito); ?></td>
-				            <td><?php echo escape($transacao->codigo_venda); ?></td>
 				            <td><?php echo escape($transacao->tipo_pagamento); ?></td>
+				            <td><?php echo escape($transacao->codigo_venda); ?></td>
 				            <td><?php echo escape($transacao->parcelas); ?></td>
 				            <td><?php echo escape($db->formatMoney($transacao->valor_bruto, 'real')); ?></td>
 				            <td><?php echo escape($db->formatMoney($transacao->valor_bruto - $transacao->valor_taxa, 'real')); ?></td>
@@ -127,55 +126,55 @@ if ($transacao->id != null) {
 				<?php
 if ($transacao->id != null) {
     switch ($transacao) {
-        case $transacao->parcelas == 1 && $transacao->debito_credito == "Débito":
+        case $transacao->parcelas == 1 && $transacao->tipo_pagamento == "Cartão de Débito":
             $total_taxa_cliente += $transacao->valor_bruto * $transacao->taxa_deb / 100;
             echo escape($db->formatMoney($transacao->valor_bruto * $transacao->taxa_deb / 100, 'real'));
             break;
-        case $transacao->parcelas == 1 && $transacao->debito_credito == "Crédito":
+        case $transacao->parcelas == 1 && $transacao->tipo_pagamento == "Cartão de Crédito":
             $total_taxa_cliente += $transacao->valor_bruto * $transacao->taxa_cred_1x / 100;
             echo escape($db->formatMoney($transacao->valor_bruto * $transacao->taxa_cred_1x / 100, 'real'));
             break;
-        case $transacao->parcelas == 2 && $transacao->debito_credito == "Crédito":
+        case $transacao->parcelas == 2 && $transacao->tipo_pagamento == "Cartão de Crédito":
             $total_taxa_cliente += $transacao->valor_bruto * $transacao->taxa_cred_2x / 100;
             echo escape($db->formatMoney($transacao->valor_bruto * $transacao->taxa_cred_2x / 100, 'real'));
             break;
-        case $transacao->parcelas == 3 && $transacao->debito_credito == "Crédito":
+        case $transacao->parcelas == 3 && $transacao->tipo_pagamento == "Cartão de Crédito":
             $total_taxa_cliente += $transacao->valor_bruto * $transacao->taxa_cred_3x / 100;
             echo escape($db->formatMoney($transacao->valor_bruto * $transacao->taxa_cred_3x / 100, 'real'));
             break;
-        case $transacao->parcelas == 4 && $transacao->debito_credito == "Crédito":
+        case $transacao->parcelas == 4 && $transacao->tipo_pagamento == "Cartão de Crédito":
             $total_taxa_cliente += $transacao->valor_bruto * $transacao->taxa_cred_4x / 100;
             echo escape($db->formatMoney($transacao->valor_bruto * $transacao->taxa_cred_4x / 100, 'real'));
             break;
-        case $transacao->parcelas == 5 && $transacao->debito_credito == "Crédito":
+        case $transacao->parcelas == 5 && $transacao->tipo_pagamento == "Cartão de Crédito":
             $total_taxa_cliente += $transacao->valor_bruto * $transacao->taxa_cred_5x / 100;
             echo escape($db->formatMoney($transacao->valor_bruto * $transacao->taxa_cred_5x / 100, 'real'));
             break;
-        case $transacao->parcelas == 6 && $transacao->debito_credito == "Crédito":
+        case $transacao->parcelas == 6 && $transacao->tipo_pagamento == "Cartão de Crédito":
             $total_taxa_cliente += $transacao->valor_bruto * $transacao->taxa_cred_6x / 100;
             echo escape($db->formatMoney($transacao->valor_bruto * $transacao->taxa_cred_6x / 100, 'real'));
             break;
-        case $transacao->parcelas == 7 && $transacao->debito_credito == "Crédito":
+        case $transacao->parcelas == 7 && $transacao->tipo_pagamento == "Cartão de Crédito":
             $total_taxa_cliente += $transacao->valor_bruto * $transacao->taxa_cred_7x / 100;
             echo escape($db->formatMoney($transacao->valor_bruto * $transacao->taxa_cred_7x / 100, 'real'));
             break;
-        case $transacao->parcelas == 8 && $transacao->debito_credito == "Crédito":
+        case $transacao->parcelas == 8 && $transacao->tipo_pagamento == "Cartão de Crédito":
             $total_taxa_cliente += $transacao->valor_bruto * $transacao->taxa_cred_8x / 100;
             echo escape($db->formatMoney($transacao->valor_bruto * $transacao->taxa_cred_8x / 100, 'real'));
             break;
-        case $transacao->parcelas == 9 && $transacao->debito_credito == "Crédito":
+        case $transacao->parcelas == 9 && $transacao->tipo_pagamento == "Cartão de Crédito":
             $total_taxa_cliente += $transacao->valor_bruto * $transacao->taxa_cred_9x / 100;
             echo escape($db->formatMoney($transacao->valor_bruto * $transacao->taxa_cred_9x / 100, 'real'));
             break;
-        case $transacao->parcelas == 10 && $transacao->debito_credito == "Crédito":
+        case $transacao->parcelas == 10 && $transacao->tipo_pagamento == "Cartão de Crédito":
             $total_taxa_cliente += $transacao->valor_bruto * $transacao->taxa_cred_10x / 100;
             echo escape($db->formatMoney($transacao->valor_bruto * $transacao->taxa_cred_10x / 100, 'real'));
             break;
-        case $transacao->parcelas == 11 && $transacao->debito_credito == "Crédito":
+        case $transacao->parcelas == 11 && $transacao->tipo_pagamento == "Cartão de Crédito":
             $total_taxa_cliente += $transacao->valor_bruto * $transacao->taxa_cred_11x / 100;
             echo escape($db->formatMoney($transacao->valor_bruto * $transacao->taxa_cred_11x / 100, 'real'));
             break;
-        case $transacao->parcelas == 12 && $transacao->debito_credito == "Crédito":
+        case $transacao->parcelas == 12 && $transacao->tipo_pagamento == "Cartão de Crédito":
             $total_taxa_cliente += $transacao->valor_bruto * $transacao->taxa_cred_12x / 100;
             echo escape($db->formatMoney($transacao->valor_bruto * $transacao->taxa_cred_12x / 100, 'real'));
             break;
@@ -198,10 +197,8 @@ if ($transacao->id != null) {
             <th></th>
             <th></th>
             <th></th>
-            <th></th>
             <th>
-<?php if ($total_bruto != 0) {echo escape($db->formatMoney($total_bruto, 'real'));
-    $total_bruto = 0;} else {echo "N/A";}
+<?php if ($total_bruto != 0) {echo escape($db->formatMoney($total_bruto, 'real'));} else {echo "N/A";}
 ?>
             </th>
             <th>
@@ -221,7 +218,7 @@ if ($transacao->id != null) {
             </th>
             <th>
 <?php
-$liquido_cliente = $total_recebido - $total_taxa_cliente;
+$liquido_cliente = $total_bruto - $total_taxa_cliente;
 $lucro = $total_recebido - $liquido_cliente - $total_taxa_iss;
 
 //SALVAR RELATÓRIO
@@ -232,6 +229,10 @@ if ($is_client) {
     $id_results = $db->results();
 
     $idCliente = array_column($id_results, 'id_cliente');
+
+    if (in_array($transacao->id, $idCliente)) {
+        $db->delete('Arquivo_Relatorio', array('id_cliente', '=', $transacao->id));
+    }
 
     $relatorio = array(
         'id_arquivo' => $transacao->id_arquivo,
@@ -245,7 +246,7 @@ if ($is_client) {
 }
 
 $lucro = $db->formatMoney($total_recebido - $liquido_cliente - $total_taxa_iss, 'real');
-$liquido_cliente = $db->formatMoney($total_recebido - $total_taxa_cliente, 'real');
+$liquido_cliente = $db->formatMoney($total_bruto - $total_taxa_cliente, 'real');
 
 if ($is_client) {echo "<a href='#' title='Total Cliente' onclick=\"enviarTotal('$liquido_cliente', '$lucro')\" data-toggle='modal' data-target='#myModal'><i class='fa fa-search-plus' ></i></a>";}
 ?>
@@ -256,6 +257,7 @@ if ($is_client) {echo "<a href='#' title='Total Cliente' onclick=\"enviarTotal('
 <hr/>
 <?php $is_client = false;?>
 <?php
+$total_bruto = 0;
 $total_recebido = 0;
 $total_taxa_iss = 0;
 $total_taxa_cliente = 0;

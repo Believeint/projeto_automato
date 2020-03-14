@@ -106,7 +106,7 @@ if (isset($_POST['Import'])) {
                     "id_transacao" => $row['transacao_id'],
                 );
                 // Armazena arquivo_transacao
-                $db->insert("arquivo_transacao", $arquivo_transacao);
+                $db->insert("Arquivo_Transacao", $arquivo_transacao);
 
                 // Insere id Usuário se Existir
                 $db->getAllClientes();
@@ -122,7 +122,7 @@ if (isset($_POST['Import'])) {
                             $field = array(
                                 'id_cliente' => $cliente->id_cliente,
                             );
-                            $sql = "UPDATE transacao SET id_cliente = ? WHERE transacao_id = '$transacao_id'";
+                            $sql = "UPDATE Transacao SET id_cliente = ? WHERE transacao_id = '$transacao_id'";
                             $db->query($sql, $field);
                         }
                     }

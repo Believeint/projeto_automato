@@ -215,7 +215,7 @@ if ($_REQUEST['id']) {
     </div>
 </fieldset>
 
-<div class="input-group">
+<div class="input-group" style="margin-bottom:20px;">
     <button type="submit" name="Editar" class="btn btn-success pull-rigt"><i class="fa fa-pencil"></i> Editar</button>
 </div>
 
